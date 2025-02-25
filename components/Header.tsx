@@ -36,7 +36,7 @@ const Header = () => {
               <Link
                 key={link.title}
                 href={link.href}
-                className="hover:text-primary-500 dark:hover:text-primary-400 m-1 font-medium text-gray-900 dark:text-gray-100"
+                className="hover:text-primary-500·dark:hover:text-primary-400·after:bg-primary-500·dark:after:bg-primary-400·relative·m-1·font-medium·text-gray-900·transition-all·duration-300·after:absolute·after:bottom-0·after:left-0·after:h-0.5·after:w-0·after:transition-all·after:duration-300·hover:after:w-full·dark:text-gray-1"
               >
                 {link.title}
               </Link>
