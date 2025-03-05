@@ -5,7 +5,7 @@ import ListLayout from '@/layouts/ListLayoutRich'
 
 const POSTS_PER_PAGE = 5
 
-export const metadata = genPageMetadata({ title: '博客' })
+export const metadata = genPageMetadata({ title: '所有算法' })
 
 export default async function BlogPage(props: { searchParams: Promise<{ page: string }> }) {
   const posts = allCoreContent(sortPosts(allBlogs))
@@ -23,7 +23,7 @@ export default async function BlogPage(props: { searchParams: Promise<{ page: st
       posts={posts}
       initialDisplayPosts={initialDisplayPosts}
       pagination={pagination}
-      title="All Posts"
+      title="所有算法"
     />
   )
 }

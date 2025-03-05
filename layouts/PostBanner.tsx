@@ -18,12 +18,14 @@ interface LayoutProps {
 }
 
 export default function PostMinimal({ content, next, prev, children }: LayoutProps) {
-  const { slug, title, images } = content
+  const { slug, title, images, imageCover } = content
   const displayImage =
-    images && images.length > 0 ? images[0] : 'https://picsum.photos/seed/picsum/800/400'
+    imageCover ||
+    (images && images.length > 0 ? images[0] : 'https://picsum.photos/seed/picsum/800/400')
 
   return (
-    <SectionContainer>
+    <>
+      {/* <SectionContainer> */}
       <ScrollTopAndComment />
       <article>
         <div>
@@ -73,6 +75,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
           </footer>
         </div>
       </article>
-    </SectionContainer>
+      {/* </SectionContainer> */}
+    </>
   )
 }

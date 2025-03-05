@@ -1,6 +1,12 @@
-const { withContentlayer } = require('next-contentlayer2')
+// const { withContentlayer } = require('next-contentlayer2')
+import { withContentlayer } from 'next-contentlayer2' // Ensure you import correctly
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//   enabled: process.env.ANALYZE === 'true',
+// })
+
+import bundle_analyzer from '@next/bundle-analyzer'
+const withBundleAnalyzer = bundle_analyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
@@ -78,7 +84,7 @@ module.exports = () => {
           hostname: 'picsum.photos',
         },
       ],
-      unoptimized,
+      unoptimized: true,
     },
     async headers() {
       return [

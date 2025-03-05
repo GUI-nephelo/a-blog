@@ -1,8 +1,8 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js 入门博客',
-  author: 'nephelo',
-  headerTitle: '智能交通技术全景图：从数据处理到AI与数字孪生',
+  title: '算法中台',
+  author: '北京交研智慧科技有限公司',
+  headerTitle: '北京交研智慧科技有限公司',
   description:
     '随着智能交通技术的快速发展，数据处理、算法模型、人工智能和数字孪生技术正在深刻改变我们的出行方式。本文将带您全面了解从地图数据加工到数据库管理，从视频流处理到AI驱动的交通优化，再到数字孪生与边缘计算的最新技术进展。无论是道路网的拓扑自动查错，还是基于卫星定位的轨迹匹配算法，这些技术的结合正在为未来的智能交通系统奠定坚实的基础。',
   language: 'zh-cn',
@@ -25,7 +25,7 @@ const siteMetadata = {
   bluesky: 'https://bsky.app/',
   locale: 'zh-CN',
   // set to true if you want a navbar fixed to the top
-  stickyNav: false,
+  stickyNav: true,
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
@@ -53,9 +53,10 @@ const siteMetadata = {
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus, beehive
     // Please add your .env file and modify it according to your selection
-    provider: 'buttondown',
+    // provider: 'buttondown',
+    provider: null,
   },
-  comments: {
+  _comments: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
     // Select a provider and use the environment variables associated to it

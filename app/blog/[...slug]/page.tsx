@@ -10,15 +10,17 @@ import type { Authors, Blog } from 'contentlayer/generated'
 import PostSimple from '@/layouts/PostSimple'
 import PostLayout from '@/layouts/PostLayout'
 import PostBanner from '@/layouts/PostBanner'
+import PostBannerRich from '@/layouts/PostBannerRich'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
 
-const defaultLayout = 'PostLayout'
+const defaultLayout = 'PostBannerRich'
 const layouts = {
   PostSimple,
   PostLayout,
   PostBanner,
+  PostBannerRich,
 }
 
 export async function generateMetadata(props: {
@@ -56,7 +58,7 @@ export async function generateMetadata(props: {
       title: post.title,
       description: post.summary,
       siteName: siteMetadata.title,
-      locale: 'en_US',
+      locale: siteMetadata.locale,
       type: 'article',
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
@@ -90,6 +92,17 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
   const prev = sortedCoreContents[postIndex + 1]
   const next = sortedCoreContents[postIndex - 1]
   const post = allBlogs.find((p) => p.slug === slug) as Blog
+  const similar_all = sortedCoreContents.filter((p) => p.tags[0] == post.tags[0])
+  const similarPostIndex = similar_all.findIndex((p) => p.slug === slug)
+  const similar = similar_all.slice(
+    similarPostIndex < 3 ? 0 : similarPostIndex - 3,
+    similarPostIndex + 5 > similar_all.length ? similar_all.length - 1 : similarPostIndex + 5
+  )
+
+  // console.log('similar_all', similar_all.length)
+  // console.log('similarPostIndex', similarPostIndex)
+  // console.log('similar', similarPostIndex < 3 ? 0 : similarPostIndex - 3, similarPostIndex + 5 > similar_all.length ? similar_all.length - 1 : similarPostIndex + 5)
+
   const authorList = post?.authors || ['default']
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author)
@@ -112,7 +125,13 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+      <Layout
+        content={mainContent}
+        authorDetails={authorDetails}
+        next={next}
+        prev={prev}
+        similar={similar}
+      >
         <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
       </Layout>
     </>

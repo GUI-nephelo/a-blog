@@ -65,6 +65,7 @@ const computedFields: ComputedFields = {
 async function createTagCount(allBlogs) {
   const tagCount: Record<string, number> = {}
   allBlogs.forEach((file) => {
+    // console.log(file.slug.split('/')[0])
     if (file.tags && (!isProduction || file.draft !== true)) {
       file.tags.forEach((tag) => {
         const formattedTag = slug(tag)
@@ -105,6 +106,7 @@ export const Blog = defineDocumentType(() => ({
     draft: { type: 'boolean' },
     summary: { type: 'string' },
     images: { type: 'json' },
+    imageCover: { type: 'string' },
     authors: { type: 'list', of: { type: 'string' } },
     layout: { type: 'string' },
     bibliography: { type: 'string' },

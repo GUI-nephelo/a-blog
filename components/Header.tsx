@@ -5,9 +5,11 @@ import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
+import Image from 'next/image'
 
 const Header = () => {
-  let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10'
+  let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-8'
+  // let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50'
   }
@@ -17,7 +19,13 @@ const Header = () => {
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="flex items-center justify-between">
           <div className="mr-3">
-            <Logo />
+            <Image
+              width={120}
+              height={120}
+              src="https://www.btismart.com/assets/img/favicon.ico"
+              alt="Site Logo"
+              className="h-6 w-6"
+            />
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
             <div className="hidden h-6 text-2xl font-semibold sm:block">
